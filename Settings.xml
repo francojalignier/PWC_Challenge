@@ -1,0 +1,14 @@
+<Variables>
+    <TEST>
+        <VariableCase id="browser">chrome</VariableCase>
+        <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
+        <VariableCase id="speed">0.5</VariableCase>
+        <VariableCase id="wait">2</VariableCase>
+    </TEST>
+    <TESTHEADLESS>
+        <VariableCase id="browser">chromeheadless</VariableCase>
+        <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
+        <VariableCase id="speed">0.5</VariableCase>
+        <VariableCase id="wait">2</VariableCase>
+    </TESTHEADLESS>
+</Variables>
