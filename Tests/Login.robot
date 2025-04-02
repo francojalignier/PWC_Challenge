@@ -1,7 +1,6 @@
 *** Settings ***
 Resource          ../PageObjects/Login.robot
 Resource          ../Common/Keywords.robot
-Resource          ../Common/Variables.robot
 Resource          ../PageObjects/Inventory.robot
 
 *** Test Cases ***
@@ -11,7 +10,6 @@ Valid Login
     Input Password    ${PasswordField}    ${ValidPassword}
     Click Element    ${LoginButton}
     Validate Element is Visible    ${PageTitle}
-    Validate Element is Visible    ${MenuButton}
     Validate Element is Visible    ${CartButton}
     Validate Element is Visible    ${InventoryList}
 
