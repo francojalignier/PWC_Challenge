@@ -1,2 +1,6 @@
 /ResultsTests
 .pabotsuitenames
+*.html
+*.png
+interactive_console_output.xml
+output.xml

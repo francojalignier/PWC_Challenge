@@ -6,11 +6,12 @@ Library           XML
 Library           Collections
 Library           chromedriversync.py
 Resource          ../PageObjects/Login.robot
+Resource          Variables.robot
 Library           capture_logs.py
 
 *** Variables ***
 ${Environment}      TEST
-${Speed}            0
+${Speed}            2
 ${Url}              https://www.saucedemo.com/
 ${Browser}          Chrome
 ${Wait}             2
@@ -41,7 +42,7 @@ Chrome
     Call Method    ${chrome options}    add_argument    --lang\=es-mx
     ${options}=    Call Method    ${chrome options}    to_capabilities
     Open Browser    ${Url}    chrome    desired_capabilities=${options}
-    Set Window Size    1920    969
+    Maximize Browser Window
 
 ChromeHeadless
     [Documentation]    Realiza la ejecución del Chrome en modo oculto.
@@ -58,7 +59,7 @@ Login
     Input Text    ${UsernameField}    ${User}
     Input Password    ${PasswordField}    ${Password}
     Click Element    ${LoginButton}
-    Validate Element is Visible    ${PageTitle}
+    Wait Until Element Is Visible   ${PageTitle}    ${Wait}
 
 Logout
     [Arguments]    ${exeption}=None
@@ -73,54 +74,20 @@ Check Console Log
     END
     Run Keyword If    "${exeption}"=="None"    Should Be True    "@{log_msg}"=="@{EMPTY}"
 
-Validate Button
-    [Arguments]    ${ID}
-    Element Should Be Visible    btn${ID}
-
-Click Button
-    [Arguments]    ${ID}
-    Click Element    btn${ID}
-
 Validate Element is Visible
     [Arguments]    ${ID}
+    Wait Until Element Is Visible    ${ID}    ${Wait}
     Element Should Be Visible    ${ID}
 
-Validar Toast
-    [Arguments]    ${Texto}    ${TimeOut}=20
-    Wait Until Element Is Visible    toast-container    ${TimeOut}
-    Wait Until Element Is Visible    //*[@id="toast-container"]//*[@aria-label="Close"]
-    Element Should Contain    toast-container    ${Texto}
-    Click Element    //*[@id="toast-container"]//*[@aria-label="Close"]
+Add Item to Cart
+    [Arguments]    ${InventoryList}    ${ItemName}
+    Click Element    //div[@id="${InventoryList}"]//div[text()="${ItemName}"]//parent::a//parent::div//parent::div//button[text()="Add to cart"]
 
-Importar Archivo
-    [Arguments]    ${Path_Archivo}
-    Choose File    name=files[]    ${Path_Archivo}
+Remove Item from Cart
+    [Arguments]    ${InventoryList}    ${ItemName}
+    Click Element    //div[@id="${InventoryList}"]//div[text()="${ItemName}"]//parent::a//parent::div//parent::div//button[text()="Remove"]
 
-Validate Required Field
-    [Arguments]    ${ID}
-    Element Should Be Visible    label${ID}
-    Element Should Be Visible    requerido${ID}
-    Element Should Be Visible    ${ID}
-
-Fill Input Field
-    [Arguments]    ${ID}    ${Valor}
-    Wait Until Element Is Visible    ${ID}
-    Click Element    ${ID}
-    Press Keys    ${ID}    ${Valor}
-    Press Keys    none    RETURN
-
-Clean Input Field
-    [Arguments]    ${ID}
-    Wait Until Element Is Visible    ${ID}
-    Click Element    ${ID}
-    Clear Element Text    //*[@id="${ID}"]//*[@class="dx-texteditor-input"]
-    Press Keys    none    RETURN
-
-Select Value from Dropdown
-    [Arguments]    ${ID}    ${Valor}
-    Wait Until Element Is Visible    ${ID}
-    Click Element    ${ID}
-    Sleep    1
-    ${status}=    Run Keyword And Return Status    Wait Until Element Is Visible    //*[@role="listbox"]//*[@role="option"]//*[contains(text(),'${Valor}')]
-    Run Keyword If    ${status}==False    Scroll Element Into View    //*[@role="listbox"]//*[@role="option"]//*[contains(text(),'${Valor}')]
-    Click Element    //*[@role="listbox"]//*[@role="option"]//*[contains(text(),'${Valor}')]
+Validate Error Message
+    [Arguments]    ${Message}=None
+    Validate Element is Visible    ${ErrorMessage}
+    Run Keyword If    "${Message}"!="None"    SeleniumLibrary.Element Text Should Be    ${ErrorMessage}    ${Message}
