@@ -4,11 +4,23 @@
         <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
         <VariableCase id="speed">0</VariableCase>
         <VariableCase id="wait">2</VariableCase>
+        <VariableCase id="browserwidth">1980</VariableCase>
+        <VariableCase id="browserheight">969</VariableCase>
     </TEST>
-    <TESTHEADLESS>
+    <FullHD_Resolution>
         <VariableCase id="browser">chromeheadless</VariableCase>
         <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
         <VariableCase id="speed">0</VariableCase>
         <VariableCase id="wait">2</VariableCase>
-    </TESTHEADLESS>
+        <VariableCase id="browserwidth">1980</VariableCase>
+        <VariableCase id="browserheight">969</VariableCase>
+    </FullHD_Resolution>
+    <HD_Resolution>
+        <VariableCase id="browser">chromeheadless</VariableCase>
+        <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
+        <VariableCase id="speed">0</VariableCase>
+        <VariableCase id="wait">2</VariableCase>
+        <VariableCase id="browserwidth">1280</VariableCase>
+        <VariableCase id="browserheight">720</VariableCase>
+    </HD_Resolution>
 </Variables>
