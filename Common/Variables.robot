@@ -1,4 +1,5 @@
 *** Variables ***
+${Setting}          TEST
 ${ValidUsername}            standard_user
 ${ValidPassword}            secret_sauce
 ${InvalidUsername}          standar_userasd

@@ -1,39 +1,34 @@
 *** Settings ***
 Library           SeleniumLibrary
-Library           OperatingSystem
-Library           DateTime
 Library           XML
 Library           Collections
+Library           String
 Library           chromedriversync.py
+Library           capture_logs.py
 Resource          ../PageObjects/Login.robot
 Resource          Variables.robot
-Library           capture_logs.py
-
-*** Variables ***
-${Environment}      TEST
-${Speed}            2
-${Url}              https://www.saucedemo.com/
-${Browser}          Chrome
-${Wait}             2
 
 *** Keywords ***
 Parse XML
     ${root}=    XML.Parse Xml    ././Settings.xml
     Should Be Equal    ${root.tag}    Variables
-    ${browser}=    Get Element Text    ${root}    ${Environment}/VariableCase[@id='browser']
-    ${url}=    Get Element Text    ${root}    ${Environment}/VariableCase[@id='url']
-    ${speed}=    Get Element Text    ${root}    ${Environment}/VariableCase[@id='speed']
-    ${wait}=    Get Element Text    ${root}    ${Environment}/VariableCase[@id='wait']
+    ${browser}=    Get Element Text    ${root}    ${Setting}/VariableCase[@id='browser']
+    ${url}=    Get Element Text    ${root}    ${Setting}/VariableCase[@id='url']
+    ${speed}=    Get Element Text    ${root}    ${Setting}/VariableCase[@id='speed']
+    ${wait}=    Get Element Text    ${root}    ${Setting}/VariableCase[@id='wait']
+    ${browserwidth}=    Get Element Text    ${root}    ${Setting}/VariableCase[@id='browserwidth']
+    ${browserheight}=    Get Element Text    ${root}    ${Setting}/VariableCase[@id='browserheight']
     Set Global Variable    ${Url}    ${url}
     Set Global Variable    ${Browser}    ${browser}
     Set Global Variable    ${Speed}    ${speed}
     Set Global Variable    ${Wait}    ${wait}
+    Set Global Variable    ${BrowserWidth}    ${browserwidth}
+    Set Global Variable    ${BrowserHeight}    ${browserheight}
     ${chromedriver_path}=   chromedriversync.Get Chromedriver Path
 
 Run Browser
     Set Selenium Speed    ${Speed}
     Run Keyword If    "${Browser}"=="chrome"    Chrome
-    # Run Keyword If    "${Browser}"=="firefox"    FirefoxHeadless
     Run Keyword If    "${Browser}"=="chromeheadless"    ChromeHeadless
 
 Chrome
@@ -50,7 +45,7 @@ ChromeHeadless
     Call Method    ${chrome options}    add_argument    --lang\=es-mx
     ${options}=    Call Method    ${chrome options}    to_capabilities
     Open Browser    ${Url}    headlesschrome    desired_capabilities=${options}
-    Set Window Size    1920    969
+    Set Window Size    ${BrowserWidth}    ${BrowserHeight}
 
 Login
     [Arguments]    ${User}    ${Password}
@@ -91,3 +86,10 @@ Validate Error Message
     [Arguments]    ${Message}=None
     Validate Element is Visible    ${ErrorMessage}
     Run Keyword If    "${Message}"!="None"    SeleniumLibrary.Element Text Should Be    ${ErrorMessage}    ${Message}
+
+Get String and return Number
+    [Arguments]    ${Locator}    ${TextToRemove}=${EMPTY}
+    ${Price}=    SeleniumLibrary.Get Text  ${Locator}
+    ${String}=    Remove String    ${Price}    ${TextToRemove}
+    ${Number}=    Convert To Number   ${String}
+    RETURN    ${Number}

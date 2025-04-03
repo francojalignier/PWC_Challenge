@@ -1,0 +1,11 @@
+pabot --testlevelsplit --processes 4 -v SETTING:FullHD_Resolution -d Results Tests
+pabot --testlevelsplit --processes 4 -v SETTING:HD_Resolution -d Results Tests
+pabot --testlevelsplit --processes 4 -v SETTING:TEST -d Results Tests
+
+robot -v SETTING:FullHD_Resolution -d Results Tests
+robot -v SETTING:HD_Resolution -d Results Tests
+robot -v SETTING:TEST -d Results Tests
+
+pabot --testlevelsplit --processes 4 -v AMBIENTE:TEST -d Results -x output1.xml -l log1.html -r report1.html Tests
+pabot --testlevelsplit --processes 4 -v AMBIENTE:TEST --rerunfailed Results/output.xml -d Results -x output2.xml -l log2.html -r report2.html Tests
+rebot --merge ResultsSmoke/outputSmoke1.xml ResultsSmoke/outputSmoke2.xml -o ResultsSmoke/outputSmoke.xml -l ResultsSmoke/logSmoke.html -r ResultsSmoke/reportSmoke.html
