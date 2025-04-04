@@ -57,6 +57,11 @@ For running a specific test suite:
 robot -d Results Tests/Inventory.robot
 ```
 
+For running test by using a specific configuration for the browser:
+```sh
+robot -v SETTING:FullHD_Resolution -d Results Tests 
+```
+
 For running tests with a specific tag:
 ```sh
 robot -d Results -i <tag> Tests/
