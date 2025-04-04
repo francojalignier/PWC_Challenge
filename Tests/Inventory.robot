@@ -50,6 +50,36 @@ Add all items to Cart and remove the first
     Click Element    ${ItemsToBeRemoved}[1]
     Validate Cart Number    ${CartBadge}
 
+Sort Products by Price (Low-High)
+    Login    ${ValidUsername}    ${ValidPassword}
+    Wait Until Element Is Visible    ${InventoryList}
+    Select From List By Value    ${SortByDropdown}    ${SortLowtoHigh_Option}
+    ${Prices}    Create List
+    @{InventoryItems}=    Get WebElements   ${InventoryItemPrice}
+    FOR    ${item}    IN    @{InventoryItems}
+        ${Price}    Get String and return Number    ${item}    $
+        Append To List    ${Prices}    ${Price}
+    END
+    ${SortedPrices}    Copy List    ${Prices}
+    Sort List    ${SortedPrices}
+    Lists Should Be Equal    ${Prices}    ${SortedPrices}
+
+Sort Products by Price (High-Low)
+    Login    ${ValidUsername}    ${ValidPassword}
+    Wait Until Element Is Visible    ${InventoryList}
+    Select From List By Value    ${SortByDropdown}    ${SortHightoLow_Option}
+    Sleep    1
+    ${Prices}    Create List
+    @{InventoryItems}=    Get WebElements   ${InventoryItemPrice}
+    FOR    ${item}    IN    @{InventoryItems}
+        ${Price}    Get String and return Number    ${item}    $
+        Append To List    ${Prices}    ${Price}
+    END
+    ${SortedPrices}    Copy List    ${Prices}
+    Sort List    ${SortedPrices}
+    Reverse List    ${SortedPrices}
+    Lists Should Be Equal    ${Prices}    ${SortedPrices}
+
 *** Keywords ***
 Validate Cart Number
     [Arguments]    ${ID}
