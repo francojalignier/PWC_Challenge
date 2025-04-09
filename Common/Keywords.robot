@@ -36,14 +36,11 @@ Start Other Browser
     Set Window Size    ${BrowserWidth}    ${BrowserHeight}
 
 Start Chrome
-    ${chrome options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
     ${prefs} =    Create Dictionary    credentials_enable_service=false    profile.password_manager_enabled=false    profile.password_manager_leak_detection=false
-    Call Method    ${chrome options}    add_experimental_option    prefs    ${prefs}
-    Call Method    ${chrome options}    add_argument    --lang\=es-mx
-    Call Method    ${chrome options}    add_argument    --disable-infobars
-    Call Method    ${chrome options}    add_argument    --disable-web-security
-    ${options}=    Call Method    ${chrome options}    to_capabilities
-    Open Browser    ${Url}    ${Browser}    desired_capabilities=${options}
+    Call Method    ${options}    add_experimental_option    prefs    ${prefs}
+    Call Method    ${options}    add_argument    --guest
+    Open Browser    ${Url}    ${Browser}   options=${options}
     Set Window Size    ${BrowserWidth}    ${BrowserHeight}
 
 Login

@@ -5,6 +5,5 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 def install_all_drivers():
     ChromeDriverManager().install()
-    GeckoDriverManager().install()
-    OperaDriverManager().install()
+    #GeckoDriverManager().install()
     EdgeChromiumDriverManager().install()
