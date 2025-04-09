@@ -3,7 +3,7 @@ Library           SeleniumLibrary
 Library           XML
 Library           Collections
 Library           String
-Library           chromedriversync.py
+Library           install_drivers.py
 Library           capture_logs.py
 Resource          ../PageObjects/Login.robot
 Resource          Variables.robot
@@ -24,27 +24,26 @@ Parse XML
     Set Global Variable    ${Wait}    ${wait}
     Set Global Variable    ${BrowserWidth}    ${browserwidth}
     Set Global Variable    ${BrowserHeight}    ${browserheight}
-    ${chromedriver_path}=   chromedriversync.Get Chromedriver Path
+    install_drivers.Install All Drivers
 
 Run Browser
     Set Selenium Speed    ${Speed}
-    Run Keyword If    "${Browser}"=="chrome"    Chrome
-    Run Keyword If    "${Browser}"=="chromeheadless"    ChromeHeadless
+    Run Keyword If    "${Browser}"=="chrome" or "${Browser}"=="headlesschrome"   Start Chrome
+    Run Keyword If    "${Browser}"!="chrome" or "${Browser}"!="headlesschrome"   Start Other Browser
 
-Chrome
-    [Documentation]    Realiza la ejecución del Chrome en modo visible.
-    ${chrome options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-    Call Method    ${chrome options}    add_argument    --lang\=es-mx
-    ${options}=    Call Method    ${chrome options}    to_capabilities
-    Open Browser    ${Url}    chrome    desired_capabilities=${options}
-    Maximize Browser Window
+Start Other Browser
+    Open Browser    ${Url}    ${Browser}
+    Set Window Size    ${BrowserWidth}    ${BrowserHeight}
 
-ChromeHeadless
-    [Documentation]    Realiza la ejecución del Chrome en modo oculto.
+Start Chrome
     ${chrome options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    ${prefs} =    Create Dictionary    credentials_enable_service=false    profile.password_manager_enabled=false    profile.password_manager_leak_detection=false
+    Call Method    ${chrome options}    add_experimental_option    prefs    ${prefs}
     Call Method    ${chrome options}    add_argument    --lang\=es-mx
+    Call Method    ${chrome options}    add_argument    --disable-infobars
+    Call Method    ${chrome options}    add_argument    --disable-web-security
     ${options}=    Call Method    ${chrome options}    to_capabilities
-    Open Browser    ${Url}    headlesschrome    desired_capabilities=${options}
+    Open Browser    ${Url}    ${Browser}    desired_capabilities=${options}
     Set Window Size    ${BrowserWidth}    ${BrowserHeight}
 
 Login
@@ -93,3 +92,9 @@ Get String and return Number
     ${String}=    Remove String    ${Price}    ${TextToRemove}
     ${Number}=    Convert To Number   ${String}
     RETURN    ${Number}
+
+Click Object
+    [Arguments]    ${ID}
+    Wait Until Element Is Visible    ${ID}    ${Wait}
+    Element Should Be Visible    ${ID}
+    Click Element    ${ID}
