@@ -14,17 +14,15 @@ Successful checkout
     Wait Until Element Is Visible    ${InventoryList}
     @{Items}=    Get WebElements   ${AddToCartButton}
     FOR    ${Item}    IN    @{Items}
-        Click Element    ${Item}
+        Click Object    ${Item}
     END
-    Click Element    ${CartButton}
-    Validate Element is Visible    ${CheckoutButton}
-    Scroll Element Into View    ${CheckoutButton}
-    Click Element    ${CheckoutButton}
+    Click Object    ${CartButton}
+    Click Object    ${CheckoutButton}
     Validate Element is Visible    ${FirstNameField}
     Input Text    ${FirstNameField}    Franco
     Input Text    ${LastNameField}    Jalignier
     Input Text    ${PostalCodeField}    2000
-    Click Element    ${ContinueButton}
+    Click Object    ${ContinueButton}
     Validate Element is Visible    ${CheckoutSummaryList}
     @{SummaryItems}=    Get WebElements   ${ItemPrice}
     FOR    ${Item}    IN    @{SummaryItems}
@@ -37,7 +35,7 @@ Successful checkout
     ${TotalCalculated}=    Evaluate   ${Tax}+${CalculatedPrice}
     ${Total}=    Get String and return Number    ${TotalPrice}    Total: $
     Should Be Equal As Integers    ${Total}    ${TotalCalculated}
-    Click Element    ${FinishButton}
+    Click Object    ${FinishButton}
     Validate Element is Visible    ${CheckoutCompleted}
 
 Checkout with First Name empty
@@ -45,16 +43,14 @@ Checkout with First Name empty
     Wait Until Element Is Visible    ${InventoryList}
     @{Items}=    Get WebElements   ${AddToCartButton}
     FOR    ${Item}    IN    @{Items}
-        Click Element    ${Item}
+        Click Object    ${Item}
     END
-    Click Element    ${CartButton}
-    Validate Element is Visible    ${CheckoutButton}
-    Scroll Element Into View    ${CheckoutButton}
-    Click Element    ${CheckoutButton}
+    Click Object    ${CartButton}
+    Click Object    ${CheckoutButton}
     Validate Element is Visible    ${FirstNameField}
     Input Text    ${LastNameField}    Jalignier
     Input Text    ${PostalCodeField}    2000
-    Click Element    ${ContinueButton}
+    Click Object    ${ContinueButton}
     Validate Error Message    Error: First Name is required
 
 Checkout with Last Name empty
@@ -62,16 +58,14 @@ Checkout with Last Name empty
     Wait Until Element Is Visible    ${InventoryList}
     @{Items}=    Get WebElements   ${AddToCartButton}
     FOR    ${Item}    IN    @{Items}
-        Click Element    ${Item}
+        Click Object    ${Item}
     END
-    Click Element    ${CartButton}
-    Validate Element is Visible    ${CheckoutButton}
-    Scroll Element Into View    ${CheckoutButton}
-    Click Element    ${CheckoutButton}
+    Click Object    ${CartButton}
+    Click Object    ${CheckoutButton}
     Validate Element is Visible    ${FirstNameField}
     Input Text    ${FirstNameField}    Franco
     Input Text    ${PostalCodeField}    2000
-    Click Element    ${ContinueButton}
+    Click Object    ${ContinueButton}
     Validate Error Message     Error: Last Name is required
 
 Checkout with Postal Code empty
@@ -79,14 +73,12 @@ Checkout with Postal Code empty
     Wait Until Element Is Visible    ${InventoryList}
     @{Items}=    Get WebElements   ${AddToCartButton}
     FOR    ${Item}    IN    @{Items}
-        Click Element    ${Item}
+        Click Object    ${Item}
     END
-    Click Element    ${CartButton}
-    Validate Element is Visible    ${CheckoutButton}
-    Scroll Element Into View    ${CheckoutButton}
-    Click Element    ${CheckoutButton}
+    Click Object    ${CartButton}
+    Click Object    ${CheckoutButton}
     Validate Element is Visible    ${FirstNameField}
     Input Text    ${FirstNameField}    Franco
     Input Text    ${LastNameField}    Jalignier
-    Click Element    ${ContinueButton}
+    Click Object    ${ContinueButton}
     Validate Error Message    Error: Postal Code is required
