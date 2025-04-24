@@ -25,6 +25,7 @@ Parse XML
     Set Global Variable    ${BrowserWidth}    ${browserwidth}
     Set Global Variable    ${BrowserHeight}    ${browserheight}
     install_drivers.Install All Drivers
+    Set Selenium Speed    ${Speed}
 
 Run Browser
     Set Selenium Speed    ${Speed}
