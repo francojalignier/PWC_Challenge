@@ -7,20 +7,84 @@
         <VariableCase id="browserwidth">1980</VariableCase>
         <VariableCase id="browserheight">969</VariableCase>
     </TEST>
-    <FullHD_Resolution>
-        <VariableCase id="browser">chromeheadless</VariableCase>
+    <FullHD_Chromeheadless>
+        <VariableCase id="browser">headlesschrome</VariableCase>
         <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
         <VariableCase id="speed">0</VariableCase>
         <VariableCase id="wait">2</VariableCase>
         <VariableCase id="browserwidth">1980</VariableCase>
         <VariableCase id="browserheight">969</VariableCase>
-    </FullHD_Resolution>
-    <HD_Resolution>
-        <VariableCase id="browser">chromeheadless</VariableCase>
+    </FullHD_Chromeheadless>
+    <HD_Chromeheadless>
+        <VariableCase id="browser">headlesschrome</VariableCase>
         <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
         <VariableCase id="speed">0</VariableCase>
         <VariableCase id="wait">2</VariableCase>
         <VariableCase id="browserwidth">1280</VariableCase>
         <VariableCase id="browserheight">720</VariableCase>
-    </HD_Resolution>
+    </HD_Chromeheadless>
+    <FullHD_Safari>
+        <VariableCase id="browser">safari</VariableCase>
+        <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
+        <VariableCase id="speed">0</VariableCase>
+        <VariableCase id="wait">2</VariableCase>
+        <VariableCase id="browserwidth">1980</VariableCase>
+        <VariableCase id="browserheight">969</VariableCase>
+    </FullHD_Safari>
+    <HD_Safari>
+        <VariableCase id="browser">safari</VariableCase>
+        <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
+        <VariableCase id="speed">0</VariableCase>
+        <VariableCase id="wait">2</VariableCase>
+        <VariableCase id="browserwidth">1280</VariableCase>
+        <VariableCase id="browserheight">720</VariableCase>
+    </HD_Safari>
+    <FullHD_Firefox>
+        <VariableCase id="browser">firefox</VariableCase>
+        <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
+        <VariableCase id="speed">0</VariableCase>
+        <VariableCase id="wait">2</VariableCase>
+        <VariableCase id="browserwidth">1980</VariableCase>
+        <VariableCase id="browserheight">969</VariableCase>
+    </FullHD_Firefox>
+    <HD_Firefox>
+        <VariableCase id="browser">firefox</VariableCase>
+        <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
+        <VariableCase id="speed">0</VariableCase>
+        <VariableCase id="wait">2</VariableCase>
+        <VariableCase id="browserwidth">1280</VariableCase>
+        <VariableCase id="browserheight">720</VariableCase>
+    </HD_Firefox>
+    <FullHD_Firefoxheadless>
+        <VariableCase id="browser">headlessfirefox</VariableCase>
+        <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
+        <VariableCase id="speed">0</VariableCase>
+        <VariableCase id="wait">2</VariableCase>
+        <VariableCase id="browserwidth">1980</VariableCase>
+        <VariableCase id="browserheight">969</VariableCase>
+    </FullHD_Firefoxheadless>
+    <HD_Firefoxheadless>
+        <VariableCase id="browser">headlessfirefox</VariableCase>
+        <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
+        <VariableCase id="speed">0</VariableCase>
+        <VariableCase id="wait">2</VariableCase>
+        <VariableCase id="browserwidth">1280</VariableCase>
+        <VariableCase id="browserheight">720</VariableCase>
+    </HD_Firefoxheadless>
+    <FullHD_Edge>
+        <VariableCase id="browser">edge</VariableCase>
+        <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
+        <VariableCase id="speed">0</VariableCase>
+        <VariableCase id="wait">2</VariableCase>
+        <VariableCase id="browserwidth">1980</VariableCase>
+        <VariableCase id="browserheight">969</VariableCase>
+    </FullHD_Edge>
+    <HD_Edge>
+        <VariableCase id="browser">edge</VariableCase>
+        <VariableCase id="url">https://www.saucedemo.com/</VariableCase>
+        <VariableCase id="speed">0</VariableCase>
+        <VariableCase id="wait">2</VariableCase>
+        <VariableCase id="browserwidth">1280</VariableCase>
+        <VariableCase id="browserheight">720</VariableCase>
+    </HD_Edge>
 </Variables>

@@ -21,7 +21,7 @@ Add all items to Cart automatically
     Wait Until Element Is Visible    ${InventoryList}
     @{Items}=    Get WebElements   ${AddToCartButton}
     FOR    ${Item}    IN    @{Items}
-        Click Element    ${Item}
+        Click Object    ${Item}
     END
     Validate Cart Number    ${CartBadge}
     
@@ -36,7 +36,7 @@ Add first item to Cart automatically
     Login    ${ValidUsername}    ${ValidPassword}
     Wait Until Element Is Visible    ${InventoryList}
     @{Items}=    Get WebElements   ${AddToCartButton}
-    Click Element    ${Items}[0]
+    Click Object    ${Items}[0]
     Validate Cart Number    ${CartBadge}
 
 Add all items to Cart and remove the first
@@ -44,10 +44,10 @@ Add all items to Cart and remove the first
     Wait Until Element Is Visible    ${InventoryList}
     @{Items}=    Get WebElements   ${AddToCartButton}
     FOR    ${Item}    IN    @{Items}
-        Click Element    ${Item}
+        Click Object    ${Item}
     END
     @{ItemsToBeRemoved}=    Get WebElements   ${RemoveFromCartButton}
-    Click Element    ${ItemsToBeRemoved}[1]
+    Click Object    ${ItemsToBeRemoved}[1]
     Validate Cart Number    ${CartBadge}
 
 Sort Products by Price (Low-High)
