@@ -36,10 +36,10 @@ Start Other Browser
     Set Window Size    ${BrowserWidth}    ${BrowserHeight}
 
 Start Chrome
-    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
     ${prefs} =    Create Dictionary    credentials_enable_service=false    profile.password_manager_enabled=false    profile.password_manager_leak_detection=false
+    Call Method    ${options}    add_argument    ${CHROME OPTIONS}
     Call Method    ${options}    add_experimental_option    prefs    ${prefs}
-    Call Method    ${options}    add_argument    --guest
     Open Browser    ${Url}    ${Browser}   options=${options}
     Set Window Size    ${BrowserWidth}    ${BrowserHeight}
 
